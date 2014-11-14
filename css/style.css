@@ -1,0 +1,25 @@
+.wrapper {
+	width: 960px;
+}
+
+.subjectline div.stuff {
+	/*float: left; */
+	display: inline-block;
+	border-style: solid;
+	margin: 10px 10px 10px 10px;
+	padding: 5px 5px 5px 5px;
+}
+
+.subjectline div.first {
+	margin-left: 0px;
+}
+
+.subjectline div.last {
+	margin-right: 0px;
+}
+
+/* #special {
+	border-style: solid;
+	padding: 5px 5px 5px 5px;
+
+} */

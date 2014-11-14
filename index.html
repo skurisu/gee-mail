@@ -6,24 +6,41 @@
       window.onload = function(){
         // ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE. 
         // We have to use window.onload so your JavaScript doesn't execute until the page has loaded and all HTML has been downloaded to your browser
-        
-        
+        // loop through array and print to console
+        // loop through array and insert div
+        for (var i = 0; i < window.geemails.length; i++) {
+        	console.log(window.geemails[i]);
+        	  var div = document.createElement("DIV")
+        	  div.className += 'subjectline';	
+        var node = document.createTextNode(window.geemails[i]["date"]);
+		div.appendChild(node); 
+
+        var element = document.getElementById("main");
+		element.appendChild(div);
+        }
+
+        //for (var i = 0; i < window.geemails.length; i++) {
+ 
       };
 
     </script>
 	</head>
+
 
 	<body>
 		<div id="header" > 
 		<h3> GeeMail </h3>
 		</div>
 
-
 		<div class="container" id="main">
-			<div id="content">
-			<p> Something </p>
-			</div>
-
+			<div class="wrapper">
+				<div class="subjectline">
+					<div class="stuff first"> date </div>
+					<div class="stuff"> sender </div>		
+					<div class="stuff"> subject </div> 
+					<div class="stuff last"> message </div> 
+				</div>
+			</div>	
 		</div>
 	</body>
 </html>
