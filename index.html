@@ -15,7 +15,7 @@
         	subjectline.className += 'subjectline';	// gives subjectline box class subjectline
 
         	var date = document.createElement("DIV") // makes date box
-        	date.className += 'stuff';  // gives date box class stuff
+        	date.className += 'stuff first';  // gives date box class stuff
 
         	var sender = document.createElement("DIV")
         	sender.className += 'stuff';
@@ -24,7 +24,7 @@
         	subject.className += 'stuff';
 
         	var message = document.createElement("DIV")
-        	message.className += 'stuff';
+        	message.className += 'stuff last';
 
         	var dateText = document.createTextNode(window.geemails[i]["date"]); // creates text version of date
 			date.appendChild(dateText); // puts text in box
