@@ -10,13 +10,41 @@
         // loop through array and insert div
         for (var i = 0; i < window.geemails.length; i++) {
         	console.log(window.geemails[i]);
-        	  var div = document.createElement("DIV")
-        	  div.className += 'subjectline';	
-        var node = document.createTextNode(window.geemails[i]["date"]);
-		div.appendChild(node); 
 
-        var element = document.getElementById("main");
-		element.appendChild(div);
+        	var subjectline = document.createElement("DIV") //make subjectline box
+        	subjectline.className += 'subjectline';	// gives subjectline box class subjectline
+
+        	var date = document.createElement("DIV") // makes date box
+        	date.className += 'stuff';  // gives date box class stuff
+
+        	var sender = document.createElement("DIV")
+        	sender.className += 'stuff';
+
+        	var subject = document.createElement("DIV")
+        	subject.className += 'stuff';
+
+        	var message = document.createElement("DIV")
+        	message.className += 'stuff';
+
+        	var dateText = document.createTextNode(window.geemails[i]["date"]); // creates text version of date
+			date.appendChild(dateText); // puts text in box
+
+			var senderText = document.createTextNode(window.geemails[i]["sender"]);
+			sender.appendChild(senderText);
+
+			var subjectText = document.createTextNode(window.geemails[i]["subject"]);
+			subject.appendChild(subjectText);
+
+			var messageText = document.createTextNode(window.geemails[i]["body"]);
+			message.appendChild(messageText);
+		
+        	subjectline.appendChild(date); // puts date box in the subjectline box
+        	subjectline.appendChild(sender);
+        	subjectline.appendChild(subject);
+        	subjectline.appendChild(message);
+
+        	var element = document.getElementById("main");  // gets the main box
+			element.appendChild(subjectline); // puts subjectline in main box
         }
 
         //for (var i = 0; i < window.geemails.length; i++) {
@@ -32,7 +60,7 @@
 		<h3> GeeMail </h3>
 		</div>
 
-		<div class="container" id="main">
+		<div class="container" id="main"> 
 			<div class="wrapper">
 				<div class="subjectline">
 					<div class="stuff first"> date </div>
