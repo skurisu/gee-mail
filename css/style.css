@@ -18,6 +18,10 @@
 	margin-right: 0px;
 }
 
+.hideblock {
+	display: none!important;
+}
+
 /* #special {
 	border-style: solid;
 	padding: 5px 5px 5px 5px;

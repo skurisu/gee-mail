@@ -6,13 +6,15 @@
       window.onload = function(){
         // ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE. 
         // We have to use window.onload so your JavaScript doesn't execute until the page has loaded and all HTML has been downloaded to your browser
-        // loop through array and print to console
         // loop through array and insert div
         for (var i = 0; i < window.geemails.length; i++) {
-        	console.log(window.geemails[i]);
+        
 
+        	// http://www.w3schools.com/jsref/met_document_createelement.asp
         	var subjectline = document.createElement("DIV") //make subjectline box
+        	// http://stackoverflow.com/questions/927312/how-to-append-a-css-class-to-an-element-by-javascript
         	subjectline.className += 'subjectline';	// gives subjectline box class subjectline
+        	
 
         	var date = document.createElement("DIV") // makes date box
         	date.className += 'stuff first';  // gives date box class stuff
@@ -24,9 +26,13 @@
         	subject.className += 'stuff';
 
         	var message = document.createElement("DIV")
-        	message.className += 'stuff last';
+        	message.className += 'stuff last hideblock';
+        	message.id = 'message' +i
 
+        	// http://www.w3schools.com/jsref/met_document_createtextnode.asp
         	var dateText = document.createTextNode(window.geemails[i]["date"]); // creates text version of date
+
+        	// http://www.w3schools.com/jsref/met_node_appendchild.asp
 			date.appendChild(dateText); // puts text in box
 
 			var senderText = document.createTextNode(window.geemails[i]["sender"]);
@@ -45,11 +51,42 @@
 
         	var element = document.getElementById("main");  // gets the main box
 			element.appendChild(subjectline); // puts subjectline in main box
-        }
+
+
+			subjectline.addEventListener("click", function(){ 
+				console.log(this)
+				var q = this.getElementsByClassName("last");
+				q[0].classList.toggle('hideblock');
+				console.log(message);
+			})
+			
+			console.log(date);
+			var x = drawBlock(window.geemails[i]["date"], "stuff first")
+			console.log(x);
+
+		}
+
+			
+    }
+// Why does this function definition allow us to run the code before it's defined?
+        	function drawBlock(text, classString) {
+        	//make a div
+        	var date = document.createElement("DIV")
+        	// use text argument as text that goes inside div
+        	// assign classString to the div
+        	// print div instead of 2 strings
+        	var dateText = document.createTextNode(text);
+        	date.className += classString; 
+        	date.appendChild(dateText);
+        	//print	
+			return date
+
+
+			};
 
         //for (var i = 0; i < window.geemails.length; i++) {
  
-      };
+  
 
     </script>
 	</head>
@@ -65,7 +102,7 @@
 				<div class="subjectline">
 					<div class="stuff first"> date </div>
 					<div class="stuff"> sender </div>		
-					<div class="stuff"> subject </div> 
+					<button> subject </button> 
 					<div class="stuff last"> message </div> 
 				</div>
 			</div>	
