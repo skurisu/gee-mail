@@ -16,34 +16,21 @@
         	subjectline.className += 'subjectline';	// gives subjectline box class subjectline
         	
 
-        	var date = document.createElement("DIV") // makes date box
-        	date.className += 'stuff first';  // gives date box class stuff
+        	var date = drawBlock(window.geemails[i]["date"], "stuff first") 
 
-        	var sender = document.createElement("DIV")
-        	sender.className += 'stuff';
+        	var sender = drawBlock(window.geemails[i]["sender"], "stuff")
 
-        	var subject = document.createElement("DIV")
-        	subject.className += 'stuff';
+        	var subject = drawBlock(window.geemails[i]["subject"], "stuff")
 
-        	var message = document.createElement("DIV")
-        	message.className += 'stuff last hideblock';
+        	var message = drawBlock(window.geemails[i]["body"], "stuff last hideblock")
+     
         	message.id = 'message' +i
 
         	// http://www.w3schools.com/jsref/met_document_createtextnode.asp
-        	var dateText = document.createTextNode(window.geemails[i]["date"]); // creates text version of date
+        	 // creates text version of date
 
         	// http://www.w3schools.com/jsref/met_node_appendchild.asp
-			date.appendChild(dateText); // puts text in box
-
-			var senderText = document.createTextNode(window.geemails[i]["sender"]);
-			sender.appendChild(senderText);
-
-			var subjectText = document.createTextNode(window.geemails[i]["subject"]);
-			subject.appendChild(subjectText);
-
-			var messageText = document.createTextNode(window.geemails[i]["body"]);
-			message.appendChild(messageText);
-		
+	
         	subjectline.appendChild(date); // puts date box in the subjectline box
         	subjectline.appendChild(sender);
         	subjectline.appendChild(subject);
@@ -60,32 +47,51 @@
 				console.log(message);
 			})
 			
-			console.log(date);
-			var x = drawBlock(window.geemails[i]["date"], "stuff first")
-			console.log(x);
+			
 
 		}
 
+		var count = document.getElementById("count");
+		var counter = document.createTextNode(window.geemails.length)
+		count.appendChild(counter);
+
+		function onInterval(){
+			var newMessage = getNewMessage();
+			console.log(newMessage);
+		}
+
+
+		setInterval(onInterval, 5000);
 			
     }
 // Why does this function definition allow us to run the code before it's defined?
         	function drawBlock(text, classString) {
-        	//make a div
-        	var date = document.createElement("DIV")
-        	// use text argument as text that goes inside div
-        	// assign classString to the div
-        	// print div instead of 2 strings
-        	var dateText = document.createTextNode(text);
-        	date.className += classString; 
-        	date.appendChild(dateText);
-        	//print	
-			return date
+        		//make a div
+        		var block = document.createElement("DIV")
+        		// use text argument as text that goes inside div
+        		// assign classString to the div
+        		// print div instead of 2 strings
+        		var blockText = document.createTextNode(text);
+        		block.className += classString; 
+        		block.appendChild(blockText);	
+        		//print	
+				return block
 
 
 			};
 
+			function drawMessage(mess){
+				
+			}
+
         //for (var i = 0; i < window.geemails.length; i++) {
  
+ //make a div inside geemail with an id
+ //get the div by the id
+ //fill in the text with the number of items in the window.geemails
+
+
+
   
 
     </script>
@@ -95,6 +101,7 @@
 	<body>
 		<div id="header" > 
 		<h3> GeeMail </h3>
+		<div id="count"> </div>
 		</div>
 
 		<div class="container" id="main"> 
