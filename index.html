@@ -10,58 +10,43 @@
         for (var i = 0; i < window.geemails.length; i++) {
         
 
-        	// http://www.w3schools.com/jsref/met_document_createelement.asp
-        	var subjectline = document.createElement("DIV") //make subjectline box
-        	// http://stackoverflow.com/questions/927312/how-to-append-a-css-class-to-an-element-by-javascript
-        	subjectline.className += 'subjectline';	// gives subjectline box class subjectline
-        	
-
-        	var date = drawBlock(window.geemails[i]["date"], "stuff first") 
-
-        	var sender = drawBlock(window.geemails[i]["sender"], "stuff")
-
-        	var subject = drawBlock(window.geemails[i]["subject"], "stuff")
-
-        	var message = drawBlock(window.geemails[i]["body"], "stuff last hideblock")
-     
-        	message.id = 'message' +i
 
         	// http://www.w3schools.com/jsref/met_document_createtextnode.asp
         	 // creates text version of date
 
         	// http://www.w3schools.com/jsref/met_node_appendchild.asp
 	
-        	subjectline.appendChild(date); // puts date box in the subjectline box
-        	subjectline.appendChild(sender);
-        	subjectline.appendChild(subject);
-        	subjectline.appendChild(message);
-
+        	
+        	var subjectline = drawMessage(window.geemails[i])
+        	
         	var element = document.getElementById("main");  // gets the main box
 			element.appendChild(subjectline); // puts subjectline in main box
+			console.log(window.geemails[i]);
 
-
-			subjectline.addEventListener("click", function(){ 
-				console.log(this)
-				var q = this.getElementsByClassName("last");
-				q[0].classList.toggle('hideblock');
-				console.log(message);
-			})
+		
 			
 			
 
 		}
 
 		var count = document.getElementById("count");
-		var counter = document.createTextNode(window.geemails.length)
+		var theCount = window.geemails.length
+		var counter = document.createTextNode(theCount)
 		count.appendChild(counter);
 
 		function onInterval(){
+
 			var newMessage = getNewMessage();
-			console.log(newMessage);
+			var subjectline = drawMessage(newMessage)
+			var element = document.getElementById("main");
+			element.appendChild(subjectline)
+			theCount++
+			count.innerHTML = theCount;
+			console.log(subjectline);
 		}
 
 
-		setInterval(onInterval, 5000);
+		//setInterval(onInterval, 5000);
 			
     }
 // Why does this function definition allow us to run the code before it's defined?
@@ -81,7 +66,31 @@
 			};
 
 			function drawMessage(mess){
-				
+				// http://www.w3schools.com/jsref/met_document_createelement.asp
+	        	var subjectline = document.createElement("DIV") //make subjectline box
+	        	// http://stackoverflow.com/questions/927312/how-to-append-a-css-class-to-an-element-by-javascript
+	        	
+	        	var date = drawBlock(mess["date"], "stuff") 
+	        	var sender = drawBlock(mess["sender"], "stuff first")
+	        	var subject = drawBlock(mess["subject"], "subject stuff")
+	        	var body = drawBlock(mess["body"], "stuff last hideblock")
+
+
+	        	subjectline.className += 'subjectline';	// gives subjectline box class subjectline
+	        	 // puts date box in the subjectline box
+	        	subjectline.appendChild(sender);
+	        	subjectline.appendChild(subject);
+	        	subjectline.appendChild(date);
+	        	subjectline.appendChild(body);
+
+	        	subjectline.addEventListener("click", function(){ 
+					console.log(this)
+					var q = this.getElementsByClassName("last");
+					q[0].classList.toggle('hideblock');
+					console.log(body);
+				})
+				return subjectline
+			
 			}
 
         //for (var i = 0; i < window.geemails.length; i++) {
@@ -101,18 +110,14 @@
 	<body>
 		<div id="header" > 
 		<h3> GeeMail </h3>
-		<div id="count"> </div>
+		
 		</div>
 
-		<div class="container" id="main"> 
-			<div class="wrapper">
-				<div class="subjectline">
-					<div class="stuff first"> date </div>
-					<div class="stuff"> sender </div>		
-					<button> subject </button> 
-					<div class="stuff last"> message </div> 
-				</div>
-			</div>	
+		<div class="wrapper">
+			<div class="sidebar">
+				inbox (<span id="count"> </span>)
+			</div>
+			<div class="container" id="main"> </div>	
 		</div>
 	</body>
 </html>
