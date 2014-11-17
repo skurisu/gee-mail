@@ -12,11 +12,12 @@ html,body,.container, .sideBar, .content{
 .sideBar
 {
     float:left;
-    width: 150px;
-    background: aqua;
+    width: 75px;
     padding: 10px;
     margin-right: 5px;
     font-size: 12px;
+    font-weight: bold;
+    
 
 }
 
@@ -28,6 +29,7 @@ html,body,.container, .sideBar, .content{
 
 #count {
 	display: inline;
+
 }
 
 .wrapper {
@@ -41,6 +43,7 @@ html,body,.container, .sideBar, .content{
 	line-height: 30px;
 	display: block;
 	font-size: 12px;
+	margin-left: 100px;
 }
 
 .subjectline div.stuff {
@@ -61,6 +64,7 @@ html,body,.container, .sideBar, .content{
 	display: block;
 	padding-left: 5px;
 	margin-left: 5px;
+	line-height: 20px;
 }
 
 .hideblock {
